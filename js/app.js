@@ -20,21 +20,10 @@
 
 //create global variables to be used later. One selects the navbar ul html and the other selects all sections in the html
 const navbuilder = document.querySelector('#navbar__list');
-const sections = document. querySelectorAll('section');
+const sections = document.querySelectorAll('section');
 
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
 
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
+// build the navbar
 const navBuilderFunction = () =>{
 
     //cycle through nodelist and insert html using the section id and grabbing unknown attribute from target
@@ -46,24 +35,24 @@ const navBuilderFunction = () =>{
 //call the function
 navBuilderFunction();
 
-// Add class 'active' to section when near top of viewport
 
 
 //create function to check if in viewport
-const checkIfActive = () => s
+const checkIfActive = () => 
 
     sections.forEach( section => {
 
-    //collects info the element relating to viewport
+    //collects info of the element relating to viewport
     const rect = section.getBoundingClientRect();
     
     //returns a true or false value depending if element is in viewport
     let isInViewport =   (rect.top > -5 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.outerWidth || document.documentElement.clientWidth));
 
+        //checks if its in or out of viewport and if the element does or doesn't have active class in it and toggles it
         if(isInViewport && !(section.classList.contains('your-active-class'))){
             section.classList.toggle('your-active-class');
-        } else if( !(isInViewport)){
-            section.classList.remove('your-active-class');
+        } else if( !(isInViewport) && (section.classList.contains('your-active-class'))){
+            section.classList.toggle('your-active-class');
         }
             
 
@@ -91,14 +80,3 @@ const anchorScroll = () => {
 
 //call anchor scroll
 anchorScroll();
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
