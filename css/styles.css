@@ -88,7 +88,8 @@ section {
 }
 
 .navbar__menu .menu__link {
-    padding: .5em;
+
+    padding: .2em;
     font-weight: bold;
     text-decoration: none;
     color: #000;

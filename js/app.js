@@ -44,19 +44,35 @@ const checkIfActive = () =>
 
     //collects info of the element relating to viewport
     const rect = section.getBoundingClientRect();
+
+    //check if screen is set for mobile sizes
+    let windowSize = window.matchMedia("(max-width: 500px)")
+
+    //returns true or false depending if element is partially in viewport. using 700 as an offset for these sizes
+    let partiallyInViewport = ( (rect.top <= (window.innerHeight || document.documentElement.clientHeight)) && ((rect.top + rect.height) >= 700) && (rect.left <= (window.innerWidth || document.documentElement.clientWidth)) && ((rect.left + rect.width) >= 0))
     
     //returns a true or false value depending if element is in viewport
     let isInViewport =   (rect.top > -5 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.outerWidth || document.documentElement.clientWidth));
 
         //checks if its in or out of viewport and if the element does or doesn't have active class in it and toggles it
-        if(isInViewport && !(section.classList.contains('your-active-class'))){
-            section.classList.toggle('your-active-class');
-        } else if( !(isInViewport) && (section.classList.contains('your-active-class'))){
-            section.classList.toggle('your-active-class');
-        }
-            
 
+        //if the size is indeed less than 500px width then check if elements are partially in the screen to compensate for a full element not being visible. Otherwise just check if entire element is in viewport
+        if(windowSize.matches == true){
+            console.log(partiallyInViewport);
+            if(partiallyInViewport && !(section.classList.contains('your-active-class'))){
+                section.classList.toggle('your-active-class');
+            } else if( !(partiallyInViewport) && (section.classList.contains('your-active-class'))){
+                section.classList.remove('your-active-class');
+            }
+        } else {
+            if(isInViewport && !(section.classList.contains('your-active-class'))){
+                section.classList.toggle('your-active-class');
+            } else if( !(isInViewport) && (section.classList.contains('your-active-class'))){
+                section.classList.toggle('your-active-class');
+            }
+        }
 });
+
 
 //listening to all scrolling that occurs on the website
 window.addEventListener('scroll',checkIfActive);
