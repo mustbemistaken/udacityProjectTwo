@@ -87,6 +87,11 @@ section {
     padding: 2px;
 }
 
+.nav_highlight{
+    background: #333;
+    color:  #fff !important;
+    
+}
 .navbar__menu .menu__link {
 
     padding: .2em;

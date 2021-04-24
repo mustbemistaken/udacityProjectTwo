@@ -38,13 +38,14 @@ navBuilderFunction();
 
 
 //create function to check if in viewport
-const checkIfActive = () => 
+const checkIfActive = (e) => 
 
     sections.forEach( section => {
 
     //collects info of the element relating to viewport
     const rect = section.getBoundingClientRect();
-
+    const links = document.querySelector(`.navbar__menu a[href='#${section.id}']`);
+    // let targetLink = links.querySelectorAll(`[href='${section.id}']`);
     //check if screen is set for mobile sizes
     let windowSize = window.matchMedia("(max-width: 500px)")
 
@@ -61,14 +62,19 @@ const checkIfActive = () =>
             console.log(partiallyInViewport);
             if(partiallyInViewport && !(section.classList.contains('your-active-class'))){
                 section.classList.toggle('your-active-class');
+                links.classList.add('nav_highlight');
             } else if( !(partiallyInViewport) && (section.classList.contains('your-active-class'))){
                 section.classList.remove('your-active-class');
+                links.classList.remove('nav_highlight');
             }
         } else {
             if(isInViewport && !(section.classList.contains('your-active-class'))){
                 section.classList.toggle('your-active-class');
+                links.classList.add('nav_highlight');
+
             } else if( !(isInViewport) && (section.classList.contains('your-active-class'))){
                 section.classList.toggle('your-active-class');
+                links.classList.remove('nav_highlight');
             }
         }
 });
